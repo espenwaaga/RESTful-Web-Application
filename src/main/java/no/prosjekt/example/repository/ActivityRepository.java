@@ -7,5 +7,5 @@ import java.util.List;
 public interface ActivityRepository {
     List<Activity> findAllActivities();
 
-    Activity findAllActivity(String activityId);
+    Activity findActivity(String activityId);
 }

@@ -1,6 +1,7 @@
 package no.prosjekt.example;
 
 import no.prosjekt.example.model.Activity;
+import no.prosjekt.example.model.User;
 import no.prosjekt.example.repository.ActivityRepository;
 import no.prosjekt.example.repository.ActivityRepositoryStub;
 
@@ -24,10 +25,19 @@ public class ActivityResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    @Path("{activityId}")
-    public Activity getAllActivity(@PathParam("activityId") String activityId) {
-        return activityRepository.findAllActivity(activityId);
+    @Path("{activityId}") // http://localhost:8080/RESTful-web-application/webapi/activities/{activityId}
+    public Activity getActivity(@PathParam("activityId") String activityId) {
+        return activityRepository.findActivity(activityId);
     }
+
+    @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Path("{activityId}/user") // http://localhost:8080/RESTful-web-application/webapi/activities/{activityId}/user
+    public User getActivityUser(@PathParam("activityId") String activityId) {
+        return activityRepository.findActivity(activityId).getUser();
+    }
+
+
 
 
 

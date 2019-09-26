@@ -1,6 +1,7 @@
 package no.prosjekt.example.repository;
 
 import no.prosjekt.example.model.Activity;
+import no.prosjekt.example.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,17 @@ public class ActivityRepositoryStub implements ActivityRepository {
     }
 
     @Override
-    public Activity findAllActivity(String activityId) {
+    public Activity findActivity(String activityId) {
         Activity activity1 = new Activity();
         activity1.setActivityId("1234");
         activity1.setDescription("Swimming");
         activity1.setDuration(55);
+
+        User user = new User();
+        user.setName("Espen");
+        user.setId("10");
+        activity1.setUser(user);
+
         return activity1;
     }
 
