@@ -15,4 +15,7 @@
 
 
 URL is defined through our context/servlet mapping/@Path. 
-In case of local server: http://localhosst:8080/RESTful_web_application_war/webaspi/myresources
+In case of local server: 
+
+http://localhost:8080/RESTful_web_application_war/webaspi/myresources
+http://localhost:8080/RESTful_web_application_war/webaspi/activities
