@@ -49,5 +49,21 @@ public class ActivityRepositoryStub implements ActivityRepository {
         // Should issue a insert statement to the "db"
     }
 
+    @Override
+    public Activity update(Activity activity) {
+        // Search the database to see if we have an activity with that id already. Sudo sql code:
+        // select * from Activity where id = ?
+        // if rs size == 0
+        // insert into Activity table
+        // else
+        // update the Activity
+        return activity;
+    }
+
+    @Override
+    public void delete(String activityId) {
+        // delete from activity where activityId = ?
+    }
+
 
 }

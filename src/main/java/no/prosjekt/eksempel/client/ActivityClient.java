@@ -14,14 +14,15 @@ import java.util.List;
 public class ActivityClient {
 
     private Client client;
+    private String targetUrl = "http://localhost:8080/RESTful_Web_Application_war/webapi/";
 
     public ActivityClient () {
         client = ClientBuilder.newClient();
     }
 
     public Activity get(String id) {
-
-        WebTarget target = client.target("http://localhost:8080/RESTful_Web_Application_war/webapi/");
+        // http://localhost:8080/RESTful_Web_Application_war/webapi/
+        WebTarget target = client.target(targetUrl);
 
         // Handle all return types:
         // Activity response = target.path("activities/" + id).request().get(Activity.class);
@@ -36,7 +37,7 @@ public class ActivityClient {
     }
 
     public List<Activity> get() {
-        WebTarget target = client.target("http://localhost:8080/RESTful_Web_Application_war/webapi/");
+        WebTarget target = client.target(targetUrl);
 
         // Cannot get(list.class) because list is of type activity: List<Activity>
         // Needs to get a generic type of List<Activity> --> new GenericType<List<Activity>>() {}
@@ -48,7 +49,7 @@ public class ActivityClient {
 
     public Activity create(Activity activity) {
         // http://localhost:8080/RESTful_Web_Application_war/webapi/activities/activity
-        WebTarget target = client.target("http://localhost:8080/RESTful_Web_Application_war/webapi/");
+        WebTarget target = client.target(targetUrl);
 
         Response response = target.path("activities/activity")
                 .request(MediaType.APPLICATION_JSON)
@@ -60,4 +61,32 @@ public class ActivityClient {
 
         return response.readEntity(Activity.class);
     }
+
+    public Activity update(Activity activity) {
+        WebTarget target = client.target(targetUrl);
+
+        Response response = target.path("activities/" + activity.getActivityId())
+                .request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(activity, MediaType.APPLICATION_JSON));
+
+        if(response.getStatus() != 200) {
+            throw new RuntimeException(response.getStatus() + ": there was an error on the server");
+        }
+
+        return response.readEntity(Activity.class);
+
+    }
+
+    public void delete(String activityId) {
+        WebTarget target = client.target(targetUrl);
+
+        Response response = target.path("activities/" + activityId)
+                .request(MediaType.APPLICATION_JSON)
+                .delete();
+
+        if(response.getStatus() != 200) {
+            throw new RuntimeException(response.getStatus() + ": there was an error on the server");
+        }
+    }
+
 }
