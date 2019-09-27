@@ -42,8 +42,8 @@ jobs:
 
       # run tests!
       - run: echo Test step
-      - run: mvn test
-      - run: mvn integration-test
+      # - run: mvn test
+      # - run: mvn integration-test
       - run: echo Hello World from circleCI!
 
   ## Deploy
