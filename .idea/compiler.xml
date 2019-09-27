@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RESTful-Web-Application" target="1.7" />
+      <module name="RESTful-Web-Application" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
