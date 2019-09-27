@@ -1,4 +1,4 @@
-package no.prosjekt.example.model;
+package no.prosjekt.eksempel.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

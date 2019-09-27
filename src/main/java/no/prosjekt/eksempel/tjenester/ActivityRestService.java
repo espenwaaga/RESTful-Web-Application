@@ -1,14 +1,14 @@
-package no.prosjekt.example.tjenester;
+package no.prosjekt.eksempel.tjenester;
 
-import no.prosjekt.example.model.Activity;
-import no.prosjekt.example.model.User;
-import no.prosjekt.example.repository.ActivityRepository;
-import no.prosjekt.example.repository.ActivityRepositoryStub;
+import no.prosjekt.eksempel.model.Activity;
+import no.prosjekt.eksempel.model.User;
+import no.prosjekt.eksempel.repository.ActivityRepository;
+import no.prosjekt.eksempel.repository.ActivityRepositoryStub;
 
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("activities") // http://localhost:8080/RESTful-web-application/webapi/activities
@@ -59,8 +59,18 @@ public class ActivityRestService {
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Path("{activityId}") // http://localhost:8080/RESTful-web-application/webapi/activities/{activityId}
-    public Activity getActivity(@PathParam("activityId") String activityId) {
-        return activityRepository.findActivity(activityId);
+    public Response getActivity(@PathParam("activityId") String activityId) {
+        if(activityId == null || activityId.length() < 4) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        Activity activity = activityRepository.findActivity(activityId);
+
+        if(activity == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.ok().entity(activity).build();
     }
 
     @GET

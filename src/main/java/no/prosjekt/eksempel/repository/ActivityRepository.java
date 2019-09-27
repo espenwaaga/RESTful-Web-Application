@@ -1,6 +1,6 @@
-package no.prosjekt.example.repository;
+package no.prosjekt.eksempel.repository;
 
-import no.prosjekt.example.model.Activity;
+import no.prosjekt.eksempel.model.Activity;
 
 import java.util.List;
 
