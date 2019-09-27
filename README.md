@@ -5,6 +5,7 @@
 *   Jersey implementation of RESTful-Services in Java
 *   Apache Tomcat
 *   Maven
+*   JUnit
 
 ## Service Features
 *   Retrieve all activities that a user has done

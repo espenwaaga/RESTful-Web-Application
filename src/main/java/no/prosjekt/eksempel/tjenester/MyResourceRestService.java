@@ -1,4 +1,4 @@
-package no.prosjekt.example.tjenester;
+package no.prosjekt.eksempel.tjenester;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
