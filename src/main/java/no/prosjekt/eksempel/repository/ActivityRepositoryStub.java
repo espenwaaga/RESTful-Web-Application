@@ -1,6 +1,7 @@
 package no.prosjekt.eksempel.repository;
 
 import no.prosjekt.eksempel.model.Activity;
+import no.prosjekt.eksempel.model.ActivitySearch;
 import no.prosjekt.eksempel.model.User;
 
 import java.util.ArrayList;
@@ -102,5 +103,22 @@ public class ActivityRepositoryStub implements ActivityRepository {
         return activities;
     }
 
+    // A lot cleaner than the one above!
+    @Override
+    public List<Activity> findByConstraints(ActivitySearch search) {
+
+        System.out.println(search.getDurationFrom());
+        System.out.println(search.getSearchType());
+
+        List<Activity> activities = new ArrayList<>();
+
+        Activity activity = new Activity();
+        activity.setActivityId("2345");
+        activity.setDescription("Swimming");
+        activity.setDuration(55);
+        activities.add(activity);
+
+        return activities;
+    }
 
 }
