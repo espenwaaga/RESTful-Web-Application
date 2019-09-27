@@ -16,8 +16,49 @@ public class ActivityRestService {
 
     private ActivityRepository activityRepository = new ActivityRepositoryStub();
 
+    @DELETE
+    @Path("{activityId}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response deleteActivity(@PathParam("activityId") String activityId) {
 
-    // Pretty simple and straigtforward example of binding everything to an object rather than the post underneath.
+        System.out.println(activityId);
+
+        activityRepository.delete(activityId);
+
+        return Response.ok().build();
+    }
+
+
+
+    @PATCH
+    @Path("{activityId}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Activity updateActivityWithPatch(Activity activity) {
+
+        System.out.println(activity.getActivityId());
+
+        activity = activityRepository.update(activity);
+
+        return activity;
+    }
+
+
+    @PUT
+    @Path("{activityId}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response updateActivity(Activity activity) {
+
+        System.out.println(activity.getActivityId());
+
+        activity = activityRepository.update(activity);
+
+        return Response.ok().entity(activity).build();
+    }
+
+
+    // Pretty simple and straightforward example of binding everything to an object rather than the post underneath.
     @POST
     @Path("activity")
     @Consumes({MediaType.APPLICATION_JSON})
@@ -31,6 +72,7 @@ public class ActivityRestService {
 
         return activity;
     }
+
 
     @POST
     @Path("activity")
@@ -50,11 +92,13 @@ public class ActivityRestService {
         return activity;
     }
 
+
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public List<Activity> getAllActivities() {
         return activityRepository.findAllActivities();
     }
+
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -72,6 +116,7 @@ public class ActivityRestService {
 
         return Response.ok().entity(activity).build();
     }
+
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
