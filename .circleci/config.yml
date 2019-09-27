@@ -43,7 +43,7 @@ jobs:
       # run tests!
       - run: echo Test step
       # - run: mvn test
-      - run: mvn -o integration-test
+      - run: mvn integration-test
       - run: echo Hello World from circleCI!
 
   ## Deploy
