@@ -65,5 +65,42 @@ public class ActivityRepositoryStub implements ActivityRepository {
         // delete from activity where activityId = ?
     }
 
+    @Override
+    public List<Activity> findByDescription(List<String> descriptions) {
+        // select * from activities where description in (?,?,?)
+
+        List<Activity> activities = new ArrayList<>();
+
+        Activity activity1 = new Activity();
+        activity1.setActivityId("2345");
+        activity1.setDescription("Swimming");
+        activity1.setDuration(55);
+        activities.add(activity1);
+
+        Activity activity2 = new Activity();
+        activity2.setActivityId("3456");
+        activity2.setDescription("Dancing");
+        activity2.setDuration(78);
+        activities.add(activity2);
+
+        return activities;
+    }
+
+    // Painful to increase it with additional QueryParams!!!
+    @Override
+    public List<Activity> findByDescriptionDurationFromDurationTo(List<String> descriptions, int durationFrom, int durationTo) {
+        // select * from activities where description in (?,?,?) and duration > ? and duration < ?
+
+        List<Activity> activities = new ArrayList<>();
+
+        Activity activity = new Activity();
+        activity.setActivityId("2345");
+        activity.setDescription("Swimming");
+        activity.setDuration(55);
+        activities.add(activity);
+
+        return activities;
+    }
+
 
 }

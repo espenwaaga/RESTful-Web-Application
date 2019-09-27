@@ -42,7 +42,7 @@ public class ActivityClient {
         // Cannot get(list.class) because list is of type activity: List<Activity>
         // Needs to get a generic type of List<Activity> --> new GenericType<List<Activity>>() {}
         // "Wrap what I have as my response into this GenericType, and then it knows how to handle it."
-        List<Activity> responses = target.path("activities").request(MediaType.APPLICATION_JSON).get(new GenericType<List<Activity>>() {});
+        List<Activity> responses = target.path("activities").request(MediaType.APPLICATION_JSON).get(new GenericType< List<Activity> >() {});
 
         return responses;
     }
